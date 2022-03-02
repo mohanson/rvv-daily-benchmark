@@ -1,0 +1,10 @@
+github.com/godump/acdb v0.1.4 h1:LLA+s4VcjWuTDjQAu1oGvtI8fv0Je1jYQ5ZAewUthA8=
+github.com/godump/acdb v0.1.4/go.mod h1:A/5Du8ZIn8kEQTT9mS/MxD237eo3iOhC+zQph9AGTJ8=
+github.com/godump/cron v0.1.2 h1:pynPunKwK4Pvwe+hZBhHTXTA30HoW6ZHeHA2UxcCBIY=
+github.com/godump/cron v0.1.2/go.mod h1:/lGk9e3i1FjfZQZGG23IrKDdI28Mm+Sm51m618ZCl4k=
+github.com/godump/doa v0.1.1 h1:4YNeR+DwdVtX20cr1mTZsbg73AhjSH0zPdNOzGx5fZ0=
+github.com/godump/doa v0.1.1/go.mod h1:yYjHKMXnoVy7DVzo+snfMC4zplr/Qca9q0xQ73Qm4nU=
+github.com/godump/gracefulexit v0.1.1 h1:RWi2JxSPIIe7HBAMTI9XTbL/bPqJPK4HICG6IatoVRs=
+github.com/godump/gracefulexit v0.1.1/go.mod h1:pHKnwOMRgnpELHitoPerzuy+xXWZYsGz9YQZJ7CMb4M=
+github.com/godump/lru v0.1.1 h1:Mi8izKE9LXG4DY0M1W/gmjv1yxESQ5pLjk+x0WJb5J4=
+github.com/godump/lru v0.1.1/go.mod h1:LAlJPcMa7lg5PQtB6CXwWzhIY/1J9isckJRS/HQi3s4=
