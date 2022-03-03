@@ -23,7 +23,7 @@ type Conf struct {
 }
 
 var (
-	cDb   = acdb.Map("./db")
+	cDb   = acdb.Doc("./db")
 	cConf = func() Conf {
 		conf := Conf{}
 		data := doa.Try(os.ReadFile("./conf.json")).([]byte)

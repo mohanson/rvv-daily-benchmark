@@ -13,7 +13,7 @@ import (
 )
 
 var (
-	cDb = acdb.Map("./db")
+	cDb = acdb.Doc("./db")
 )
 
 type Item struct {
