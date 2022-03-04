@@ -20,6 +20,7 @@ type Conf struct {
 	VMPath string
 	VM     string
 	Benchs []string
+	URLs   []string
 }
 
 var (

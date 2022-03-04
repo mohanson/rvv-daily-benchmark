@@ -1,19 +1,33 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
-	"io/fs"
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 	"time"
 
 	"github.com/godump/acdb"
 	"github.com/godump/doa"
 )
 
+type Conf struct {
+	VMPath string
+	VM     string
+	Benchs []string
+	URLs   []string
+}
+
 var (
-	cDb = acdb.Doc("./db")
+	cDb   = acdb.Doc("./db")
+	cConf = func() Conf {
+		conf := Conf{}
+		data := doa.Try(os.ReadFile("./conf.json")).([]byte)
+		doa.Nil(json.Unmarshal(data, &conf))
+		return conf
+	}()
 )
 
 type Item struct {
@@ -31,10 +45,11 @@ func main() {
 		w.Write([]byte("</style>"))
 		w.Write([]byte("</head>"))
 		w.Write([]byte("<body>"))
-		for _, path := range doa.Try(os.ReadDir("./db")).([]fs.DirEntry) {
+		for i := 0; i < len(cConf.Benchs); i++ {
+			path := filepath.Base(cConf.Benchs[i])
 			data := []Item{}
-			doa.Nil(cDb.GetDecode(path.Name(), &data))
-			w.Write([]byte(fmt.Sprintf("<h2>%s</h2>", path.Name())))
+			doa.Nil(cDb.GetDecode(path, &data))
+			w.Write([]byte(fmt.Sprintf("<h3>%s<small><a href=\"%s\">🔗</a></small></h3>", path, cConf.URLs[i])))
 			w.Write([]byte("<table>"))
 			w.Write([]byte("<thead><tr><th>Date</th><th>Duration(ms)</th><th>CommitID</th></tr></thead>"))
 			w.Write([]byte("<tbody>"))
