@@ -37,6 +37,11 @@ type Item struct {
 }
 
 func main() {
+	http.HandleFunc("/cpu", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("<body>"))
+		w.Write([]byte(fmt.Sprintf("<pre><code>%s</code></pre>", string(doa.Try(os.ReadFile("/proc/cpuinfo")).([]byte)))))
+		w.Write([]byte("</body>"))
+	})
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("<head>"))
 		w.Write([]byte("<style type=\"text/css\">"))
@@ -59,9 +64,8 @@ func main() {
 			w.Write([]byte("</tbody>"))
 			w.Write([]byte("</table>"))
 		}
-		w.Write([]byte("<h2>CPU Info</h2>"))
-		w.Write([]byte(fmt.Sprintf("<pre><code>%s</code></pre>", string(doa.Try(os.ReadFile("/proc/cpuinfo")).([]byte)))))
-		w.Write([]byte("</code></pre>"))
+		w.Write([]byte("<h3>Extra infomations</h3>"))
+		w.Write([]byte("<a href=\"/cpu\">* CPU</a>"))
 		w.Write([]byte("</body>"))
 	})
 	log.Println("listen and server on :8080")
