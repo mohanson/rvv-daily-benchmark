@@ -90,6 +90,8 @@ func (m *Main) CaseOnce(path string) {
 }
 
 func (m *Main) Once() {
+	m.UpdateVM()
+	m.UpdateCommitID()
 	for _, e := range cConf.Benchs {
 		m.CaseOnce(e)
 	}
