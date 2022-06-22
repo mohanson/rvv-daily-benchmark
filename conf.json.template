@@ -10,7 +10,8 @@
         "/home/ubuntu/src/rvv-daily-benchmark/res/alt-bn128-example-riscv-raw",
         "/home/ubuntu/src/rvv-daily-benchmark/res/alt-bn128-example-rvv-asm",
         "/home/ubuntu/src/rvv-daily-benchmark/res/alt-bn128-example-riscv-raw-ae40544",
-        "/home/ubuntu/src/rvv-daily-benchmark/res/alt-bn128-example-rvv-asm-ae40544"
+        "/home/ubuntu/src/rvv-daily-benchmark/res/alt-bn128-example-rvv-asm-ae40544",
+        "/home/ubuntu/src/rvv-daily-benchmark/res/blst-rvv"
     ],
     "URLs": [
         "https://github.com/mohanson/rvv-playground/blob/ee9b3a9c128dba10bd54a470ad405286f5f4d2df/res/vadd_vv_bench.c",
@@ -21,6 +22,7 @@
         "https://github.com/cryptape/rvv-prototype/tree/fa1f8ff9d0656382f0b288dfffcc6ba945eb0e44/bn128-example",
         "https://github.com/cryptape/rvv-prototype/tree/fa1f8ff9d0656382f0b288dfffcc6ba945eb0e44/bn128-example",
         "https://github.com/cryptape/rvv-prototype/tree/ae405442b477a972e022016c2d791733c788cca7/bn128-example",
-        "https://github.com/cryptape/rvv-prototype/tree/ae405442b477a972e022016c2d791733c788cca7/bn128-example"
+        "https://github.com/cryptape/rvv-prototype/tree/ae405442b477a972e022016c2d791733c788cca7/bn128-example",
+        "https://github.com/mohanson/blst/blob/asm/Makefile#L29"
     ]
 }
