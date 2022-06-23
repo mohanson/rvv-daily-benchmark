@@ -20,6 +20,7 @@ type Conf struct {
 	VMPath string
 	VM     string
 	Benchs []string
+	Args   [][]string
 	URLs   []string
 }
 
@@ -72,18 +73,19 @@ func (m *Main) CaseStorage(path string) []Item {
 	}
 }
 
-func (m *Main) CaseElapses(path string) int64 {
+func (m *Main) CaseElapses(path string, args []string) int64 {
 	log.Println(path)
 	tic := time.Now()
-	cmd := exec.Command(cConf.VM, path)
+	arg := append([]string{path}, args...)
+	cmd := exec.Command(cConf.VM, arg...)
 	out := doa.Try(cmd.Output()).([]byte)
 	log.Println(strings.TrimSpace(string(out)))
 	toc := time.Since(tic)
 	return toc.Milliseconds()
 }
 
-func (m *Main) CaseOnce(path string) {
-	d := m.CaseElapses(path)
+func (m *Main) CaseOnce(path string, args []string) {
+	d := m.CaseElapses(path, args)
 	s := m.CaseStorage(path)
 	s = append(s, Item{Time: time.Now(), Duration: d, CommitID: m.CommitID})
 	cDb.SetEncode(filepath.Base(path), s)
@@ -92,8 +94,10 @@ func (m *Main) CaseOnce(path string) {
 func (m *Main) Once() {
 	m.UpdateVM()
 	m.UpdateCommitID()
-	for _, e := range cConf.Benchs {
-		m.CaseOnce(e)
+	for i, e := range cConf.Benchs {
+		path := e
+		args := cConf.Args[i]
+		m.CaseOnce(path, args)
 	}
 }
 
