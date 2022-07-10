@@ -1,17 +1,31 @@
 {
     "VMPath": "/home/ubuntu/src/ckb-vm",
-    "VM": "/home/ubuntu/src/ckb-vm/target/release/examples/asm64",
+    "VM": "/home/ubuntu/src/ckb-vm/target/release/examples/ckb-vm-runner",
     "Benchs": [
-        "/home/ubuntu/src/rvv-daily-benchmark/res/vadd_vv_bench",
-        "/home/ubuntu/src/rvv-daily-benchmark/res/vdiv_vv_bench",
-        "/home/ubuntu/src/rvv-daily-benchmark/res/vmul_vv_bench",
-        "/home/ubuntu/src/rvv-daily-benchmark/res/mont-example-raw",
-        "/home/ubuntu/src/rvv-daily-benchmark/res/mont-example-rvv-asm",
-        "/home/ubuntu/src/rvv-daily-benchmark/res/alt-bn128-example-riscv-raw",
-        "/home/ubuntu/src/rvv-daily-benchmark/res/alt-bn128-example-rvv-asm",
-        "/home/ubuntu/src/rvv-daily-benchmark/res/alt-bn128-example-riscv-raw-ae40544",
-        "/home/ubuntu/src/rvv-daily-benchmark/res/alt-bn128-example-rvv-asm-ae40544",
-        "/home/ubuntu/src/rvv-daily-benchmark/res/blst-rvv"
+        "./res/vadd_vv_bench",
+        "./res/vdiv_vv_bench",
+        "./res/vmul_vv_bench",
+        "./res/mont-example-raw",
+        "./res/mont-example-rvv-asm",
+        "./res/alt-bn128-example-riscv-raw",
+        "./res/alt-bn128-example-rvv-asm",
+        "./res/alt-bn128-example-riscv-raw-ae40544",
+        "./res/alt-bn128-example-rvv-asm-ae40544",
+        "./res/alt-bn128-example-x86-raw",
+        "./res/blst-rvv"
+    ],
+    "Args": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        ["_", "100"]
+        [],
     ],
     "URLs": [
         "https://github.com/mohanson/rvv-playground/blob/ee9b3a9c128dba10bd54a470ad405286f5f4d2df/res/vadd_vv_bench.c",
@@ -23,6 +37,20 @@
         "https://github.com/cryptape/rvv-prototype/tree/fa1f8ff9d0656382f0b288dfffcc6ba945eb0e44/bn128-example",
         "https://github.com/cryptape/rvv-prototype/tree/ae405442b477a972e022016c2d791733c788cca7/bn128-example",
         "https://github.com/cryptape/rvv-prototype/tree/ae405442b477a972e022016c2d791733c788cca7/bn128-example",
+        "https://github.com/cryptape/rvv-prototype/blob/76528b121c2b706993b00b7bd987d402458b64d4/bn128-example/Makefile#L57",
         "https://github.com/mohanson/blst/blob/asm/Makefile#L29"
+    ],
+    "RunWay": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1
     ]
 }

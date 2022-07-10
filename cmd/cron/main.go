@@ -22,6 +22,7 @@ type Conf struct {
 	Benchs []string
 	Args   [][]string
 	URLs   []string
+	RunWay []int
 }
 
 var (
@@ -57,7 +58,7 @@ func (m *Main) UpdateVM() {
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	doa.Nil(cmd.Run())
-	cmd = exec.Command("sh", "-c", "cargo build --release --example asm64 --features=asm")
+	cmd = exec.Command("sh", "-c", "cargo build --release --example ckb-vm-runner --features=asm")
 	cmd.Dir = cConf.VMPath
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
@@ -73,19 +74,24 @@ func (m *Main) CaseStorage(path string) []Item {
 	}
 }
 
-func (m *Main) CaseElapses(path string, args []string) int64 {
+func (m *Main) CaseElapses(path string, args []string, ways int) int64 {
 	log.Println(path)
 	tic := time.Now()
-	arg := append([]string{path}, args...)
-	cmd := exec.Command(cConf.VM, arg...)
+	var cmd *exec.Cmd
+	if ways == 1 {
+		cmd = exec.Command(cConf.VM, append([]string{path}, args...)...)
+	}
+	if ways == 2 {
+		cmd = exec.Command(path, args...)
+	}
 	out := doa.Try(cmd.Output()).([]byte)
 	log.Println(strings.TrimSpace(string(out)))
 	toc := time.Since(tic)
 	return toc.Milliseconds()
 }
 
-func (m *Main) CaseOnce(path string, args []string) {
-	d := m.CaseElapses(path, args)
+func (m *Main) CaseOnce(path string, args []string, ways int) {
+	d := m.CaseElapses(path, args, ways)
 	s := m.CaseStorage(path)
 	s = append(s, Item{Time: time.Now(), Duration: d, CommitID: m.CommitID})
 	cDb.SetEncode(filepath.Base(path), s)
@@ -97,7 +103,8 @@ func (m *Main) Once() {
 	for i, e := range cConf.Benchs {
 		path := e
 		args := cConf.Args[i]
-		m.CaseOnce(path, args)
+		ways := cConf.RunWay[i]
+		m.CaseOnce(path, args, ways)
 	}
 }
 
