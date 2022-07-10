@@ -24,8 +24,8 @@
         [],
         [],
         [],
-        ["_", "100"]
         [],
+        ["_", "100"]
     ],
     "URLs": [
         "https://github.com/mohanson/rvv-playground/blob/ee9b3a9c128dba10bd54a470ad405286f5f4d2df/res/vadd_vv_bench.c",
